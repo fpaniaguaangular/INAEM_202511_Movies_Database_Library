@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { MovieService } from '../../services/movie-service';
 import { FormsModule } from '@angular/forms';
 @Component({
@@ -13,13 +13,11 @@ export class MovieComponent {
   movieService = inject(MovieService);
   movies : any = [];
   constructor() {
-    this.movieService.getMovies().subscribe((data)=>{
-      this.movies = data;
-      console.log(this.movies);
-    })
+    effect(()=>{
+      this.movies=this.movieService.httpSignal();
+    });
   }
   public buscar(){
-    console.log(this.movies);
     this.peliculaEncontrada = 
       this.movies.find((p:any)=>p.title.toUpperCase().includes(this.tituloBuscado.toUpperCase()));
   }

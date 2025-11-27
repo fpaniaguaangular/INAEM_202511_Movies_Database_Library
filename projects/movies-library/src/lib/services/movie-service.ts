@@ -7,7 +7,10 @@ import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 export class MovieService {
   private URL : string = 'https://fpaniaguaangular.github.io/movies/movies-2020s.json';
   private httpClient = inject(HttpClient);
-  getMovies() {
-    return this.httpClient.get(this.URL);
+  public httpSignal : WritableSignal<any> = signal(null);
+  constructor() {
+    this.httpClient.get(this.URL).subscribe((data)=>{
+      this.httpSignal.set(data);
+    });
   }
 }
