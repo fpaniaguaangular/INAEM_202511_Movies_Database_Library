@@ -1,10 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { MovieService } from '../../services/movie-service';
-import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'lib-movie-component',
-  imports: [JsonPipe, FormsModule],
+  imports: [FormsModule],
   templateUrl: './movie-component.html',
   styleUrl: './movie-component.css',
 })
@@ -20,7 +19,7 @@ export class MovieComponent {
     })
   }
   public buscar(){
-    console.log("Buscando...", this.tituloBuscado);
-    this.peliculaEntontrada = this.movies.find((p:any)=>p.title.toUpperCase().includes(this.tituloBuscado.toUpperCase()));
+    this.peliculaEntontrada = 
+      this.movies.find((p:any)=>p.title.toUpperCase().includes(this.tituloBuscado.toUpperCase()));
   }
 }
