@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class MovieComponent {
   public tituloBuscado : string ="";
-  public peliculaEntontrada : any;
+  public peliculaEncontrada : any;
   movieService = inject(MovieService);
   movies : any = [];
   constructor() {
@@ -19,7 +19,8 @@ export class MovieComponent {
     })
   }
   public buscar(){
-    this.peliculaEntontrada = 
+    console.log(this.movies);
+    this.peliculaEncontrada = 
       this.movies.find((p:any)=>p.title.toUpperCase().includes(this.tituloBuscado.toUpperCase()));
   }
 }

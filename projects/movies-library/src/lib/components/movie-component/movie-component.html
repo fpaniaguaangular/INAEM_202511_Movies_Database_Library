@@ -1,4 +1,14 @@
-<input type="text" [(ngModel)]="tituloBuscado"><button (click)="buscar()">Buscar</button>
-<div>
-    Título:{{peliculaEntontrada?.title}}
+<div class="search-bar">
+  <input type="text" [(ngModel)]="tituloBuscado">
+  <button (click)="buscar()">Buscar</button>
 </div>
+@if (peliculaEncontrada){
+<div class="movie-card">
+  <div><strong>Título:</strong> {{peliculaEncontrada?.title}}</div>
+  <div><strong>Año:</strong> {{peliculaEncontrada?.year}}</div>
+  <div><strong>Director:</strong> {{peliculaEncontrada?.director}}</div>
+  <div>
+    <img [src]="peliculaEncontrada?.thumbnail">
+  </div>
+</div>
+}
