@@ -14,6 +14,7 @@ export class MovieComponent {
   movies : any = [];
   constructor() {
     effect(()=>{
+      console.warn("Ejecutando effect");
       this.movies=this.movieService.httpSignal();
     });
   }
