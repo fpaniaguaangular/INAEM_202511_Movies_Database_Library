@@ -8,18 +8,21 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './movie-component.css',
 })
 export class MovieComponent {
-  public tituloBuscado : string ="";
-  public peliculaEncontrada : any;
+  public tituloBuscado: string = "";
+  public peliculaEncontrada: any;
   movieService = inject(MovieService);
-  movies : any = [];
+  movies: any = [];
   constructor() {
-    effect(()=>{
+    effect(() => {
       console.warn("Ejecutando effect");
-      this.movies=this.movieService.httpSignal();
+      this.movies = this.movieService.httpSignal();
     });
   }
-  public buscar(){
-    this.peliculaEncontrada = 
-      this.movies.find((p:any)=>p.title.toUpperCase().includes(this.tituloBuscado.toUpperCase()));
+  public buscar() {
+    this.peliculaEncontrada =
+      this.movies.find((p: any) => p.title.toUpperCase().includes(this.tituloBuscado.toUpperCase()));
+    if (!this.peliculaEncontrada) {
+      this.tituloBuscado = "";
+    }
   }
 }
